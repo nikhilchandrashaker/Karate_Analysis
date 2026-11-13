@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Cobra Kai vs Kickin’ It: The Karate Analysis</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;800;900&family=Source+Serif+4:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f3f5f8;--surface:#ffffff;--ink:#14181f;--muted:#586170;--line:#d4d9e1;--ck:#e6b000;--ki:#6aad1d;--ckx:#8a6500;--kix:#3f7a0c;--ckt:#fbefc2;--kit:#dcefc4;
+box-sizing:border-box;padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#15161a;--surface:#202227;--ink:#efeadc;--muted:#a39d8b;--line:#3a3c43;--ck:#ffd23a;--ki:#8ed43a;--ckx:#ffd23a;--kix:#8ed43a;--ckt:#40360a;--kit:#22340f}}
+:root[data-theme="dark"]{--bg:#15161a;--surface:#202227;--ink:#efeadc;--muted:#a39d8b;--line:#3a3c43;--ck:#ffd23a;--ki:#8ed43a;--ckx:#ffd23a;--kix:#8ed43a;--ckt:#40360a;--kit:#22340f}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.6 "Source Serif 4",Georgia,serif}
+.hero{background:linear-gradient(100deg,#f5c400 0 50%,#6aad1d 50% 100%);color:#1d1b17;padding:calc(36px + env(safe-area-inset-top,0px)) 20px 36px}
+.in{max-width:960px;margin:0 auto}
+main{max-width:960px;margin:0 auto;padding:8px 20px 64px}
+h1,h2,h3,.sans,button,select,label{font-family:Archivo,"Helvetica Neue",Arial,sans-serif}
+h1{font-weight:900;font-size:clamp(2rem,6.5vw,3.6rem);line-height:1.02;margin:0 0 10px;letter-spacing:-.02em}
+.hero p{max-width:62ch;margin:0}
+h2{font-weight:800;font-size:1.45rem;margin:44px 0 4px}
+h3{font-size:1rem;margin:0 0 8px;font-weight:800}
+.sub{color:var(--muted);margin:0 0 18px;max-width:62ch}
+.ck{color:var(--ckx)}.ki{color:var(--kix)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:18px}
+.lab2{display:grid;grid-template-columns:1fr 1fr;gap:0;border-radius:8px;overflow:hidden;border:2px solid var(--ink)}
+.side{padding:16px}.side.a{background:var(--ckt)}.side.b{background:var(--kit)}
+select{width:100%;font-size:1rem;padding:9px;border-radius:5px;border:2px solid var(--ink);background:var(--surface);color:var(--ink)}
+.side.a select{border-color:var(--ckx)}.side.b select{border-color:var(--kix)}
+.big{font-family:Archivo,sans-serif;font-weight:900;font-size:1.6rem;line-height:1.1;margin:12px 0 2px}
+.blurb{font-size:.92rem;color:var(--muted);margin:0}
+.presets{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px}
+button{font:600 .85rem Archivo,sans-serif;background:var(--ink);color:var(--bg);border:0;border-radius:99px;padding:7px 13px;cursor:pointer}
+button.alt{background:transparent;color:var(--ink);border:1.5px solid var(--ink)}
+button.on{background:linear-gradient(100deg,var(--ck),var(--ki));color:#1d1b17;border-color:transparent}
+.g2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px;margin-top:18px}
+.vs{margin-top:16px;font-family:Archivo,sans-serif;font-weight:600}
+.srow{display:grid;grid-template-columns:1fr 90px 1fr;gap:8px;align-items:center;margin:7px 0;font-family:Archivo,sans-serif;font-size:.85rem}
+.srow .nm{text-align:center;color:var(--muted)}
+.hb{height:12px;background:var(--line);border-radius:2px;overflow:hidden;display:flex}
+.hb.l{justify-content:flex-end}
+.hb,.bar{outline:1px solid var(--ink)}
+.hb i{display:block;height:100%}
+.v{font-weight:800}
+svg text{font-family:Archivo,sans-serif;fill:var(--ink)}
+.board{border:2px solid var(--ink);border-radius:8px;overflow:hidden;background:var(--surface)}
+.names{display:flex;justify-content:space-between;padding:12px 18px 0;font:800 clamp(1rem,3.5vw,1.3rem) Archivo,sans-serif}
+.score{display:flex;justify-content:space-between;padding:0 18px;font:900 clamp(2.4rem,9vw,4.4rem)/1.1 Archivo,sans-serif}
+.tug{display:flex;height:20px;margin-top:6px}.tug i{display:block;transition:width .35s}
+.verdict{margin:0;padding:10px 18px 14px;font-size:.95rem;color:var(--muted)}
+.row{padding:14px 0;border-bottom:1px solid var(--line)}
+.rh{display:flex;justify-content:space-between;gap:12px;font:600 1rem Archivo,sans-serif;margin-bottom:6px}
+.rh span:last-child{font-weight:400;color:var(--muted);font-size:.82rem}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.bar{height:13px;background:var(--line);border-radius:2px;overflow:hidden}.bar i{display:block;height:100%}
+.lb{display:flex;justify-content:space-between;font:.8rem Archivo,sans-serif;margin-bottom:2px}
+.note{margin:6px 0 0;font-size:.9rem;color:var(--muted)}
+.w{display:flex;align-items:center;gap:10px;margin-top:6px;font:.8rem Archivo,sans-serif;color:var(--muted)}
+input[type=range]{flex:1;max-width:200px;accent-color:var(--ink)}
+:focus-visible{outline:3px solid var(--ki);outline-offset:2px}
+.method{border-left:4px solid;border-image:linear-gradient(var(--ck),var(--ki)) 1;padding-left:14px;color:var(--muted);font-size:.92rem;margin-top:40px}
+a{color:var(--ink)}
+#fights{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+.fc h3{margin:2px 0 10px;font-size:1.05rem}.fe{font:.8rem Archivo,sans-serif;color:var(--muted)}
+.pbar{display:flex;height:16px;border:1px solid var(--ink);border-radius:3px;overflow:hidden}.pbar i{display:block;height:100%}
+.pl{display:flex;justify-content:space-between;font:.8rem Archivo,sans-serif;margin:3px 0 8px}
+.res{margin:0 0 6px;font:.9rem Archivo,sans-serif}
+@media(max-width:640px){.g2{grid-template-columns:1fr}.pair{grid-template-columns:1fr}.lab2{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header class="hero"><div class="in">
+<h1>Cobra Kai vs Kickin’ It: the karate, by the numbers</h1>
+<p>Pick any fighter from each show and put them head to head, see how each roster stacks up, then score the two shows on what you care about.</p>
+</div></header>
+<main>
+
+<h2>Character lab</h2>
+<p class="sub">Choose one fighter from each show or tap a classic matchup. Each is rated 1 to 10 on six skills.</p>
+<div class="presets" id="presets" role="group" aria-label="Preset matchups"></div>
+<div class="lab2">
+  <div class="side a"><label for="sa_">Cobra Kai fighter</label><select id="sa_"></select><div class="big ck" id="na"></div><p class="blurb" id="ba"></p></div>
+  <div class="side b"><label for="sb_">Kickin’ It fighter</label><select id="sb_"></select><div class="big ki" id="nb"></div><p class="blurb" id="bb"></p></div>
+</div>
+<div class="g2">
+  <div class="card"><h3>Skill profile</h3><div id="radar"></div></div>
+  <div class="card"><h3>Stat by stat</h3><div id="stats"></div><div class="vs" id="cv"></div></div>
+</div>
+
+<h2>Roster analytics</h2>
+<p class="sub">Every fighter in the data, plotted together. The selected pair is ringed.</p>
+<div class="g2">
+  <div class="card"><h3>Growth: starting skill vs peak skill</h3><div id="scatter"></div><p class="note">Above the dashed line means the character improved. The higher above it, the bigger the glow-up.</p></div>
+  <div class="card"><h3>Roster average by skill</h3><div id="avg"></div><p class="note" id="avgnote"></p></div>
+</div>
+
+<h2>Real fights, tested against the model</h2>
+<p class="sub">Sixteen documented fights from episode recaps and fan wikis. For each, the model turns the two fighters’ average skill rating into a win probability, then we check who actually won.</p>
+<div id="fsum" class="card"></div>
+<div id="fights" style="margin-top:14px"></div>
+<p class="note"><b>How this was analyzed.</b> I worked from published episode recaps and plot summaries, not frame-by-frame video, so outcomes and key moments are paraphrased from those. Some come from fan wikis, a few are group brawls, and one is implied by the bracket. Fight results are scripted by the writers, so this tests whether the ratings track the story, not real combat. I also set the ratings knowing how these fights ended, so this is not a blind test, and sixteen fights is still a small sample, with only three from Kickin’ It. Probability = 1 ÷ (1 + e<sup>−(rating gap ÷ 1.5)</sup>).</p>
+<p class="note">Sources: <a href="https://looper.com/249279/why-cobra-kai-fans-have-a-problem-with-the-season-1-finale" target="_blank" rel="noopener">Looper</a>, <a href="https://tvtropes.org/pmwiki/pmwiki.php/Recap/CobraKaiS1E10Mercy" target="_blank" rel="noopener">TV Tropes S1E10</a>, <a href="https://imdb.com/title/tt14443266/plotsummary" target="_blank" rel="noopener">IMDb S4E10</a>, <a href="https://www.tvacute.com/cobra-kai-season-4-episode-10-recap" target="_blank" rel="noopener">TV Acute S4E10</a>, <a href="https://screenrant.com/cobra-kai-season-4-ending-explained/" target="_blank" rel="noopener">Screen Rant</a>, <a href="https://en.wikipedia.org/wiki/List_of_Kickin%27_It_episodes" target="_blank" rel="noopener">Wikipedia episode list</a>, <a href="https://www.slashfilm.com/1770788/cobra-kai-season-6-part-3-sekai-taikai-tournament-winners" target="_blank" rel="noopener">SlashFilm</a>, <a href="https://tvtropes.org/pmwiki/pmwiki.php/Recap/CobraKaiS4E9TheFall" target="_blank" rel="noopener">TV Tropes S4E9</a>, <a href="https://thecinemaholic.com/who-wins-the-boys-competition-in-cobra-kai-season-4-spoiler" target="_blank" rel="noopener">The Cinemaholic</a>, <a href="https://thekaratekid.fandom.com/wiki/Demetri_Alexopoulos" target="_blank" rel="noopener">Karate Kid Wiki</a>, <a href="https://disneyskickinit.fandom.com/wiki/Swords_and_Magic" target="_blank" rel="noopener">Kickin’ It Wiki</a>.</p>
+<h2>Show scoreboard</h2>
+<p class="sub">Seven show-level categories, 1 to 10. Slide a weight up to count it more, or to 0 to ignore it.</p>
+<div class="board" aria-live="polite">
+  <div class="names"><span class="ck">Cobra Kai</span><span class="ki">Kickin’ It</span></div>
+  <div class="score"><span class="ck" id="sa">0</span><span class="ki" id="sb">0</span></div>
+  <div class="tug" aria-hidden="true"><i id="ta" style="background:var(--ck)"></i><i id="tb" style="background:var(--ki)"></i></div>
+  <p class="verdict" id="verdict"></p>
+</div>
+<div id="rows"></div>
+<p><button id="reset" type="button" class="alt">Reset weights</button></p>
+
+<p class="method">All ratings are my own editorial judgments from general knowledge of both series, not measured data. They are meant to start arguments, not end them. Change the weights, try other matchups, and see whether your rankings agree.</p>
+</main>
+<script>
+var S=["Technique","Speed","Power","Strategy","Discipline","Resolve"];
+// name, show(0=CK,1=KI), [stats], start, peak, blurb
+var C=[
+["Johnny Lawrence",0,[8,6,8,5,6,8],7,8,"Old-school striker who becomes a reluctant sensei."],
+["Daniel LaRusso",0,[8,6,6,8,9,7],6,8,"Balance-first Miyagi-Do stylist with a long memory."],
+["Miguel Diaz",0,[9,9,7,6,7,8],2,9,"Bullied kid turned the show’s most polished fighter."],
+["Robby Keene",0,[8,8,7,7,5,8],4,8,"Fast, instinctive and hard to read."],
+["Samantha LaRusso",0,[7,7,5,7,8,7],3,7,"Learns to fight smart and stays composed."],
+["Hawk",0,[7,8,7,4,3,7],2,7,"Reckless, fearless, all-in."],
+["Demetri",0,[6,5,4,9,6,7],1,6,"Wins with brains, not brawn."],
+["Tory Nichols",0,[9,9,7,8,5,10],5,9,"Ruthless competitor who fights like she has nothing to lose."],
+["Jack Brewer",1,[8,8,7,6,6,8],5,8,"Hot-headed but gifted; the heart of the dojo."],
+["Kim Crawford",1,[8,8,6,7,8,8],6,8,"Skilled, composed and the dojo’s best technician."],
+["Milton Krupnick",1,[4,4,3,8,7,6],1,4,"Brainy, studious and surprisingly brave."],
+["Jerry Martinez",1,[6,6,6,4,3,5],3,6,"Smooth, confident, and easily distracted."],
+["Eddie Jones",1,[5,6,4,4,4,5],2,5,"Sweet-natured and pulling his weight."],
+["Rudy Gillespie",1,[7,5,6,8,9,7],6,7,"Sensei with experience and a warm heart."],
+["John Kreese",0,[9,6,9,8,7,9],8,9,"Brutal, no-mercy founder of the Cobra Kai creed."],
+["Terry Silver",0,[8,6,7,9,6,8],7,8,"Wealthy manipulator who fights with strategy and money."],
+["Chozen Toguchi",0,[10,8,8,8,10,9],9,10,"Okinawan master, once Daniel’s rival and later his ally."],
+["Kenny Payne",0,[3,4,3,5,3,6],1,5,"The smallest student with the biggest chip on his shoulder."],
+["Anthony LaRusso",0,[3,3,3,4,4,5],1,4,"Daniel’s son, new to karate and finding his footing."],
+["Kyler",0,[6,6,8,4,3,6],5,6,"A bully who learns that strength alone isn’t enough."],
+["Axel Kovačević",0,[7,7,8,4,4,7],5,7,"Raw talent who wants to prove himself."],
+["Aisha Robinson",0,[7,7,6,5,4,7],4,7,"Fiery Cobra Kai fighter with a short fuse."],
+["Xander Stone",0,[8,8,6,7,6,7],8,8,"Flashy reigning All Valley champion."],
+["Zara Malik",0,[7,7,6,6,3,6],5,7,"Karate influencer who plays mind games."],
+["Sensei Wolf",0,[9,8,8,8,8,8],9,9,"Iron Dragons sensei and elite fighter."],
+["Frank",1,[6,6,6,4,3,5],5,6,"Black Dragons rival who keeps getting in Jack’s way."],
+["Bobby Wasabi",1,[8,7,7,7,8,7],7,8,"Legendary movie-star martial artist the dojo is named for."],
+["Sensei Ty",1,[8,6,7,8,3,6],8,8,"Black Dragons sensei who has his students cheat to win."]
+];
+var P=[["Miguel vs Jack","Miguel Diaz","Jack Brewer"],["Tory vs Kim","Tory Nichols","Kim Crawford"],["Demetri vs Milton","Demetri","Milton Krupnick"],["Johnny vs Rudy","Johnny Lawrence","Rudy Gillespie"],["Hawk vs Jerry","Hawk","Jerry Martinez"],["Daniel vs Rudy","Daniel LaRusso","Rudy Gillespie"],["Kreese vs Frank","John Kreese","Frank"],["Chozen vs Kim","Chozen Toguchi","Kim Crawford"],["Kenny vs Eddie","Kenny Payne","Eddie Jones"],["Silver vs Bobby Wasabi","Terry Silver","Bobby Wasabi"]];
+function idx(n){for(var i=0;i<C.length;i++)if(C[i][0]===n)return i}
+var A=idx("Miguel Diaz"),B=idx("Jack Brewer");
+var $=function(i){return document.getElementById(i)};
+function opts(sel,show){sel.innerHTML="";C.forEach(function(c,i){if(c[1]===show){var o=document.createElement("option");o.value=i;o.textContent=c[0];sel.appendChild(o)}})}
+opts($("sa_"),0);opts($("sb_"),1);
+$("sa_").onchange=function(){A=+this.value;lab()};$("sb_").onchange=function(){B=+this.value;lab()};
+var pb=$("presets");
+P.forEach(function(p,i){var b=document.createElement("button");b.type="button";b.className="alt";b.textContent=p[0];b.onclick=function(){A=idx(p[1]);B=idx(p[2]);lab()};pb.appendChild(b)});
+
+function radar(a,b){
+  var cx=150,cy=135,R=95,n=6;
+  function pt(i,v){var t=(-90+i*60)*Math.PI/180;return[cx+R*v/10*Math.cos(t),cy+R*v/10*Math.sin(t)]}
+  function poly(v){return v.map(function(x,i){return pt(i,x).join(",")}).join(" ")}
+  var s='<svg viewBox="0 0 300 275" width="100%" role="img" aria-label="Radar chart comparing '+a[0]+' and '+b[0]+'">';
+  [2,4,6,8,10].forEach(function(r){s+='<polygon points="'+poly([r,r,r,r,r,r])+'" fill="none" stroke="var(--line)"/>'});
+  for(var i=0;i<n;i++){var e=pt(i,10),l=pt(i,12.2);s+='<line x1="'+cx+'" y1="'+cy+'" x2="'+e[0]+'" y2="'+e[1]+'" stroke="var(--line)"/><text x="'+l[0]+'" y="'+(l[1]+4)+'" font-size="11" text-anchor="middle">'+S[i]+'</text>'}
+  s+='<polygon points="'+poly(a[2])+'" fill="var(--ck)" fill-opacity=".45" stroke="var(--ckx)" stroke-width="2.5"/>';
+  s+='<polygon points="'+poly(b[2])+'" fill="var(--ki)" fill-opacity=".45" stroke="var(--kix)" stroke-width="2.5"/></svg>';
+  return s}
+
+function lab(){
+  var a=C[A],b=C[B];
+  $("sa_").value=A;$("sb_").value=B;
+  $("na").textContent=a[0];$("nb").textContent=b[0];$("ba").textContent=a[5];$("bb").textContent=b[5];
+  Array.prototype.forEach.call(pb.children,function(btn,i){btn.className=(idx(P[i][1])===A&&idx(P[i][2])===B)?"on":"alt"});
+  $("radar").innerHTML=radar(a,b);
+  var h="",wa=0,wb=0,ta=0,tb=0;
+  S.forEach(function(nm,i){
+    var x=a[2][i],y=b[2][i];ta+=x;tb+=y;if(x>y)wa++;else if(y>x)wb++;
+    h+='<div class="srow"><div><div class="hb l"><i style="width:'+x*10+'%;background:var(--ck)"></i></div></div><div class="nm"><span class="v ck">'+x+'</span> '+nm+' <span class="v ki">'+y+'</span></div><div><div class="hb"><i style="width:'+y*10+'%;background:var(--ki)"></i></div></div></div>'});
+  $("stats").innerHTML=h;
+  var ga=a[4]-a[3],gb=b[4]-b[3],t=wa+" – "+wb;
+  var lead=ta===tb?"These two are dead even overall.":(ta>tb?'<span class="ck">'+a[0]+'</span>':'<span class="ki">'+b[0]+'</span>')+" leads overall ("+(Math.max(ta,tb)/6).toFixed(1)+" vs "+(Math.min(ta,tb)/6).toFixed(1)+" average).";
+  $("cv").innerHTML="Skill wins: "+t+" ("+(wa===wb?"split":"")+(wa>wb?"favors "+a[0]:wa<wb?"favors "+b[0]:"")+"). "+lead+" Growth: "+a[0].split(" ")[0]+" +"+ga+", "+b[0].split(" ")[0]+" +"+gb+".";
+  scatter();
+}
+
+function scatter(){
+  var m=34,W=320,H=320,L=W-2*m;
+  function X(v){return m+(v-0)/10*L}function Y(v){return H-m-(v)/10*L}
+  var s='<svg viewBox="0 0 '+W+' '+H+'" width="100%" role="img" aria-label="Scatter of starting vs peak skill">';
+  for(var g=0;g<=10;g+=2){s+='<line x1="'+X(g)+'" y1="'+Y(0)+'" x2="'+X(g)+'" y2="'+Y(10)+'" stroke="var(--line)"/><line x1="'+X(0)+'" y1="'+Y(g)+'" x2="'+X(10)+'" y2="'+Y(g)+'" stroke="var(--line)"/><text x="'+X(g)+'" y="'+(H-m+14)+'" font-size="10" text-anchor="middle">'+g+'</text><text x="'+(m-6)+'" y="'+(Y(g)+3)+'" font-size="10" text-anchor="end">'+g+'</text>'}
+  s+='<line x1="'+X(0)+'" y1="'+Y(0)+'" x2="'+X(10)+'" y2="'+Y(10)+'" stroke="var(--muted)" stroke-dasharray="4 4"/>';
+  s+='<text x="'+W/2+'" y="'+(H-4)+'" font-size="10" text-anchor="middle">Starting skill</text><text transform="translate(9 '+H/2+') rotate(-90)" font-size="10" text-anchor="middle">Peak skill</text>';
+  C.forEach(function(c,i){
+    var col=c[1]?"var(--ki)":"var(--ck)",sel=(i===A||i===B),jx=(i%3-1)*3;
+    if(sel)s+='<circle cx="'+X(c[3]+jx/10)+'" cy="'+Y(c[4])+'" r="11" fill="none" stroke="var(--ink)" stroke-width="2"/>';
+    s+='<circle cx="'+X(c[3])+'" cy="'+Y(c[4])+'" r="5.5" fill="'+col+'" stroke="var(--ink)" stroke-width="1"/><text x="'+(X(c[3])+8)+'" y="'+(Y(c[4])-6)+'" font-size="9">'+c[0].split(" ")[0]+'</text>'});
+  $("scatter").innerHTML=s+'</svg>'}
+
+function avg(){
+  var h="",gap=[];
+  S.forEach(function(nm,i){
+    var t=[0,0],n=[0,0];C.forEach(function(c){t[c[1]]+=c[2][i];n[c[1]]++});
+    var a=t[0]/n[0],b=t[1]/n[1];gap.push([nm,a-b]);
+    h+='<div class="srow" style="grid-template-columns:1fr 84px 1fr"><div><div class="hb l"><i style="width:'+a*10+'%;background:var(--ck)"></i></div></div><div class="nm"><span class="v ck">'+a.toFixed(1)+'</span> '+nm+' <span class="v ki">'+b.toFixed(1)+'</span></div><div><div class="hb"><i style="width:'+b*10+'%;background:var(--ki)"></i></div></div></div>'});
+  $("avg").innerHTML=h;
+  gap.sort(function(x,y){return Math.abs(y[1])-Math.abs(x[1])});
+  var g=gap[0];$("avgnote").textContent="Biggest gap: "+g[0]+", where "+(g[1]>0?"Cobra Kai":"Kickin’ It")+" leads by "+Math.abs(g[1]).toFixed(1)+" points. Smallest gap: "+gap[gap.length-1][0]+" ("+Math.abs(gap[gap.length-1][1]).toFixed(1)+").";
+}
+
+var D=[
+["Fight choreography",9,6,"Long takes and trained performers versus fast, comic staging."],
+["Technical realism",7,4,"Real stances and conditioning versus cartoon physics."],
+["Training philosophy",9,6,"Rival worldviews drive the plot versus simple lessons on honor."],
+["Tournament stakes",9,7,"Whole seasons built on the All Valley versus episode-length events."],
+["Growth through karate",9,6,"Belts tied to character arcs versus small episodic lessons."],
+["Comedy",5,9,"Funny moments inside a drama versus a comedy first."],
+["Kid-friendly",4,10,"TV-14 versus made for young viewers."]
+];
+var W=D.map(function(){return 1});
+function build(){
+  $("rows").innerHTML="";
+  D.forEach(function(d,i){
+    var r=document.createElement("div");r.className="row";
+    r.innerHTML='<div class="rh"><span>'+d[0]+'</span><span id="w'+i+'">weight '+W[i]+'</span></div><div class="pair"><div><div class="lb"><span class="ck">Cobra Kai</span><b>'+d[1]+'</b></div><div class="bar"><i style="width:'+d[1]*10+'%;background:var(--ck)"></i></div></div><div><div class="lb"><span class="ki">Kickin’ It</span><b>'+d[2]+'</b></div><div class="bar"><i style="width:'+d[2]*10+'%;background:var(--ki)"></i></div></div></div><p class="note">'+d[3]+'</p><label class="w">Weight <input type="range" min="0" max="3" step="1" value="'+W[i]+'" aria-label="Weight for '+d[0]+'"></label>';
+    r.querySelector("input").oninput=function(e){W[i]=+e.target.value;$("w"+i).textContent="weight "+W[i];calc()};
+    $("rows").appendChild(r)})}
+function calc(){
+  var t=0,a=0,b=0;D.forEach(function(d,i){t+=W[i];a+=d[1]*W[i];b+=d[2]*W[i]});
+  if(!t){$("sa").textContent="–";$("sb").textContent="–";$("ta").style.width="50%";$("tb").style.width="50%";$("verdict").textContent="Every weight is zero. Raise a slider to see a result.";return}
+  a/=t;b/=t;$("sa").textContent=a.toFixed(1);$("sb").textContent=b.toFixed(1);
+  $("ta").style.width=a/(a+b)*100+"%";$("tb").style.width=b/(a+b)*100+"%";
+  var d=Math.abs(a-b);$("verdict").textContent=d<.25?"Too close to call with these weights.":(a>b?"Cobra Kai":"Kickin’ It")+" leads by "+d.toFixed(1)+" points with your weights."}
+$("reset").onclick=function(){W=D.map(function(){return 1});build();calc()};
+var F=[{"ep": "Cobra Kai S1E10 “Mercy” (final)", "a": "Miguel Diaz", "b": "Robby Keene", "w": "Miguel Diaz", "x": "Robby’s shoulder was already injured, and Miguel kept targeting it to take the All Valley title.", "s": "Looper, TV Tropes"}, {"ep": "Cobra Kai S4E10 “The Rise” (boys’ final)", "a": "Robby Keene", "b": "Hawk", "w": "Hawk", "x": "Robby knew Hawk’s moves, and Daniel told Hawk to lean on his old Cobra Kai training. The bout went to the time limit and Hawk took it.", "s": "IMDb, The Cinemaholic"}, {"ep": "Cobra Kai S4E10 “The Rise”", "a": "Robby Keene", "b": "Demetri", "w": "Robby Keene", "x": "A close match in the boys’ bracket that Robby won.", "s": "TV Acute, The Cinemaholic"}, {"ep": "Cobra Kai S4E10 “The Rise” (girls’ final)", "a": "Samantha LaRusso", "b": "Tory Nichols", "w": "Tory Nichols", "x": "Sam scored first with a flying tornado kick, but Tory won and clinched the grand title. Silver had also paid off the referee.", "s": "IMDb, Screen Rant"}, {"ep": "Kickin’ It S1E1 “Wasabi Warriors” (cafeteria)", "a": "Jack Brewer", "b": "Frank", "w": "Jack Brewer", "x": "Jack beat Frank and his Black Dragons friends using karate. This was a group fight, so the 1-on-1 model is a rough fit.", "s": "Wikipedia episode list"}, {"ep": "Kickin’ It S1E1 (tournament)", "a": "Frank", "b": "Jack Brewer", "w": "Jack Brewer", "x": "Ty had Frank cheat by kicking the back of Jack’s leg. Jack pushed through the pain and won the belt, and Kim quit the Black Dragons rather than fight him. Recaps differ slightly on details.", "s": "Wikipedia episode list, TVmaze"}, {"ep": "Cobra Kai S1E10 “Mercy” (semifinal)", "a": "Robby Keene", "b": "Hawk", "w": "Robby Keene", "x": "Hawk took the first point and Robby the second using Daniel’s lessons. Hawk was then disqualified for hitting Robby’s injured shoulder.", "s": "Heroes Wiki, Antagonists Wiki (fan wikis)"}, {"ep": "Cobra Kai S1E10 “Mercy” (quarterfinal)", "a": "Aisha Robinson", "b": "Xander Stone", "w": "Xander Stone", "x": "The reigning All Valley champion beat Aisha with a leg sweep, then offered her a hand up.", "s": "TV Tropes"}, {"ep": "Cobra Kai S4E9 “The Fall” (quarterfinal)", "a": "Robby Keene", "b": "Kenny Payne", "w": "Robby Keene", "x": "Kreese told Robby to go all out, and he beat Kenny rather badly.", "s": "TV Tropes"}, {"ep": "Cobra Kai S4E9 “The Fall” (quarterfinal)", "a": "Kyler", "b": "Hawk", "w": "Hawk", "x": "The old rivals met in the quarterfinals. Recaps don’t spell out the bout, but Hawk is the one who reaches the semifinal, so he won.", "s": "TV Tropes (implied by bracket)"}, {"ep": "Cobra Kai S2 school brawl", "a": "Demetri", "b": "Hawk", "w": "Demetri", "x": "Demetri blocked and countered Hawk’s attacks with Miyagi-Do technique and kicked him into a trophy case. A brawl, not a scored match.", "s": "Karate Kid Wiki (fan wiki)"}, {"ep": "Cobra Kai S1 cafeteria", "a": "Kyler", "b": "Miguel Diaz", "w": "Miguel Diaz", "x": "Miguel beat up Kyler and his gang, which sent new students to Cobra Kai. A group fight.", "s": "Karate Kid Wiki (fan wiki)"}, {"ep": "Cobra Kai S6 Sekai Taikai (girls’ final)", "a": "Tory Nichols", "b": "Zara Malik", "w": "Tory Nichols", "x": "Zara got in Tory’s head early. Tory then scored a knockdown and a knockout blow to win the world title.", "s": "SlashFilm"}, {"ep": "Cobra Kai S6 Sekai Taikai (boys’ final)", "a": "Axel Kovačević", "b": "Miguel Diaz", "w": "Miguel Diaz", "x": "Axel evened the bout and landed a knockdown, but Miguel came back after a pep talk and was named world champion.", "s": "SlashFilm"}, {"ep": "Cobra Kai S6 Sekai Taikai (sensei tiebreaker)", "a": "Johnny Lawrence", "b": "Sensei Wolf", "w": "Johnny Lawrence", "x": "Johnny went down 2–0, switched to patience, and won the deciding point, which clinched the title for Cobra Kai.", "s": "SlashFilm, ComingSoon"}, {"ep": "Kickin’ It S1E5 “Swords and Magic”", "a": "Jerry Martinez", "b": "Kim Crawford", "w": "Kim Crawford", "x": "A sparring match in the dojo that Kim won.", "s": "Kickin’ It Wiki (fan wiki)"}];
+function mean6(c){return c[2].reduce(function(x,y){return x+y},0)/6}
+var onlyMiss=false;
+function fights(){
+  var h="",hit=0,br=0,worst=null,tot=[0,0],hs=[0,0];
+  F.forEach(function(f){
+    var a=C[idx(f.a)],b=C[idx(f.b)],pa=1/(1+Math.exp(-(mean6(a)-mean6(b))/1.5)),pb=1-pa,wp=f.w===f.a?pa:pb,ok=wp>.5,sh=f.ep.indexOf("Kickin")===0?1:0;
+    tot[sh]++;if(ok){hit++;hs[sh]++}br+=Math.pow(1-wp,2);
+    if(!worst||wp<worst.p)worst={p:wp,w:f.w,l:f.w===f.a?f.b:f.a};
+    if(onlyMiss&&ok)return;
+    h+='<div class="card fc"><div class="fe">'+f.ep+'</div><h3>'+f.a+' vs '+f.b+'</h3>'+
+    '<div class="pbar"><i style="width:'+pa*100+'%;background:'+(a[1]?"var(--ki)":"var(--ck)")+'"></i><i style="width:'+pb*100+'%;background:'+(b[1]?"var(--ki)":"var(--ck)")+'"></i></div>'+
+    '<div class="pl"><span>'+f.a.split(" ")[0]+' '+Math.round(pa*100)+'%</span><span>'+f.b.split(" ")[0]+' '+Math.round(pb*100)+'%</span></div>'+
+    '<p class="res"><b>Winner: '+f.w+'</b> · '+(ok?"model called it":"upset the model missed")+'</p><p class="note">'+f.x+'</p><p class="note"><i>Source: '+f.s+'</i></p></div>'});
+  $("fights").innerHTML=h;
+  $("fsum").innerHTML='<b>'+hit+' of '+F.length+'</b> winners called. Average Brier score <b>'+(br/F.length).toFixed(2)+'</b> (a coin flip scores 0.25, and lower is better). Cobra Kai fights: '+hs[0]+' of '+tot[0]+'. Kickin’ It fights: '+hs[1]+' of '+tot[1]+'. Biggest miss: <b>'+worst.w+'</b> over '+worst.l+', where the model gave the winner '+Math.round(worst.p*100)+'%.<br><button id="tg" type="button" class="alt" style="margin-top:10px">'+(onlyMiss?"Show all fights":"Show only misses")+'</button>';
+  $("tg").onclick=function(){onlyMiss=!onlyMiss;fights()};
+}
+build();calc();avg();lab();fights();
+</script>
+</body>
+</html>
