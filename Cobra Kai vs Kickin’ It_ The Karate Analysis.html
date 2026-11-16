@@ -65,6 +65,9 @@ a{color:var(--ink)}
 .pbar{display:flex;height:16px;border:1px solid var(--ink);border-radius:3px;overflow:hidden}.pbar i{display:block;height:100%}
 .pl{display:flex;justify-content:space-between;font:.8rem Archivo,sans-serif;margin:3px 0 8px}
 .res{margin:0 0 6px;font:.9rem Archivo,sans-serif}
+#log{max-height:230px;overflow:auto;font:.9rem/1.5 Archivo,sans-serif;background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:10px 12px;margin-top:12px}
+#log div{padding:2px 0;border-bottom:1px solid var(--line)}#log div:last-child{border:0}
+.sp{display:flex;height:22px;border:1px solid var(--ink);border-radius:3px;overflow:hidden;margin:8px 0}.sp i{display:block;height:100%}
 @media(max-width:640px){.g2{grid-template-columns:1fr}.pair{grid-template-columns:1fr}.lab2{grid-template-columns:1fr}}
 </style>
 </head>
@@ -94,6 +97,27 @@ a{color:var(--ink)}
   <div class="card"><h3>Roster average by skill</h3><div id="avg"></div><p class="note" id="avgnote"></p></div>
 </div>
 
+<h2>Fight simulator</h2>
+<p class="sub">Pick any two fighters and play out a match. First to 10 points wins. Every exchange is decided by the ratings plus luck, so run it again and the result can change.</p>
+<div class="lab2">
+  <div class="side a"><label for="fa">Fighter 1</label><select id="fa"></select></div>
+  <div class="side b"><label for="fb">Fighter 2</label><select id="fb"></select></div>
+</div>
+<div class="presets" style="margin-top:14px">
+  <button id="bgo" type="button">Fight!</button>
+  <button id="bsk" type="button" class="alt">Skip to result</button>
+  <button id="bmc" type="button" class="alt">Simulate 2,000 fights</button>
+  <select id="fpre" aria-label="Replay a documented fight" style="width:auto;max-width:100%"></select>
+</div>
+<div class="board" aria-live="polite">
+  <div class="names"><span id="sn1"></span><span id="sn2"></span></div>
+  <div class="score"><span id="ss1">0</span><span id="ss2">0</span></div>
+  <div class="tug" aria-hidden="true"><i id="st1"></i><i id="st2"></i></div>
+  <p class="verdict" id="sv">Pick two fighters and press Fight!</p>
+</div>
+<div id="log" aria-label="Play-by-play"></div>
+<div class="card" id="mc" style="margin-top:14px;display:none"></div>
+<p class="note">How it works: each exchange, the faster and sharper fighter (speed and strategy) is more likely to attack. The attacker lands a point based on technique, speed and power against the defender’s discipline, strategy and speed. A miss can draw a counter. High-power fighters can score a 2-point knockdown, and high-resolve fighters fight harder when trailing by 3 or more. It is a toy built on the same editorial ratings as everything else here, so it shows what the ratings imply, not how the characters would really fight.</p>
 <h2>Real fights, tested against the model</h2>
 <p class="sub">Sixteen documented fights from episode recaps and fan wikis. For each, the model turns the two fighters’ average skill rating into a win probability, then we check who actually won.</p>
 <div id="fsum" class="card"></div>
@@ -250,7 +274,81 @@ function fights(){
   $("fsum").innerHTML='<b>'+hit+' of '+F.length+'</b> winners called. Average Brier score <b>'+(br/F.length).toFixed(2)+'</b> (a coin flip scores 0.25, and lower is better). Cobra Kai fights: '+hs[0]+' of '+tot[0]+'. Kickin’ It fights: '+hs[1]+' of '+tot[1]+'. Biggest miss: <b>'+worst.w+'</b> over '+worst.l+', where the model gave the winner '+Math.round(worst.p*100)+'%.<br><button id="tg" type="button" class="alt" style="margin-top:10px">'+(onlyMiss?"Show all fights":"Show only misses")+'</button>';
   $("tg").onclick=function(){onlyMiss=!onlyMiss;fights()};
 }
-build();calc();avg();lab();fights();
+var SA=idx("Miguel Diaz"),SB=idx("Jack Brewer"),timer=null;
+function pk(a){return a[Math.floor(Math.random()*a.length)]}
+function ini(c){return .5*c[2][1]+.5*c[2][3]}
+function fs(c){return c[0].split(" ")[0]}
+function simulate(a,b){
+  var s1=0,s2=0,ev=[],n=0;
+  while(s1<10&&s2<10&&n<300){
+    n++;
+    var att=Math.random()<1/(1+Math.exp(-(ini(a)-ini(b))/2))?0:1,A=att?b:a,D=att?a:b,as=A[2],ds=D[2];
+    var off=.4*as[0]+.3*as[1]+.3*as[2],def=.4*ds[4]+.3*ds[3]+.3*ds[1];
+    var mine=att?s2:s1,opp=att?s1:s2,p=.5+.035*(off-def)+(opp-mine>=3?.02*as[5]:0);
+    p=Math.max(.15,Math.min(.85,p));
+    var who=-1,pts=0,t;
+    if(Math.random()<p){
+      who=att;pts=(as[2]>=8&&Math.random()<.25)?2:1;
+      t=pts===2?fs(A)+" lands a huge knockdown!":fs(A)+" "+pk(["lands a clean kick","scores with a crisp strike","sweeps the leg","times a sharp counter-step and hits","slips past the guard"]);
+    }else if(Math.random()<.15+.02*ds[4]){
+      who=1-att;pts=1;t=fs(D)+" blocks "+fs(A)+" and counters for a point";
+    }else t=fs(A)+" "+pk(["goes for a strike but it’s blocked","misses badly","gets read perfectly","is stuffed at the last second"]);
+    if(who===0)s1+=pts;else if(who===1)s2+=pts;
+    ev.push({t:t,s1:s1,s2:s2});
+  }
+  return{ev:ev,s1:s1,s2:s2};
+}
+function upd(x,y){
+  $("ss1").textContent=x;$("ss2").textContent=y;
+  var t=x+y;$("st1").style.width=(t?x/t*100:50)+"%";$("st2").style.width=(t?y/t*100:50)+"%";
+}
+function simLabels(){
+  var a=C[SA],b=C[SB];
+  $("fa").value=SA;$("fb").value=SB;
+  $("fa").parentNode.className="side "+(a[1]?"b":"a");$("fb").parentNode.className="side "+(b[1]?"b":"a");
+  $("sn1").textContent=a[0];$("sn1").className=a[1]?"ki":"ck";$("sn2").textContent=b[0];$("sn2").className=b[1]?"ki":"ck";
+  $("st1").style.background=a[1]?"var(--ki)":"var(--ck)";$("st2").style.background=b[1]?"var(--ki)":"var(--ck)";
+  clearInterval(timer);upd(0,0);$("log").innerHTML="";$("mc").style.display="none";$("sv").textContent="Pick two fighters and press Fight!";
+}
+function line(e){var d=document.createElement("div");d.textContent=e.t+" ("+e.s1+"–"+e.s2+")";$("log").appendChild(d);$("log").scrollTop=1e6}
+function finish(r){
+  var a=C[SA],b=C[SB],w=r.s1>r.s2?0:(r.s2>r.s1?1:(Math.random()<.5?0:1)),wn=w?b[0]:a[0],m="";
+  F.forEach(function(f){if((f.a===a[0]&&f.b===b[0])||(f.a===b[0]&&f.b===a[0]))m=" In the show, the winner was "+f.w+".";});
+  $("sv").textContent=wn+" wins "+Math.max(r.s1,r.s2)+"–"+Math.min(r.s1,r.s2)+"."+m;
+}
+function play(skip){
+  clearInterval(timer);
+  var a=C[SA],b=C[SB],r=simulate(a,b),i=0;
+  $("log").innerHTML="";upd(0,0);$("sv").textContent="Fight!";
+  if(skip){while(i<r.ev.length)line(r.ev[i++]);upd(r.s1,r.s2);finish(r);return}
+  timer=setInterval(function(){
+    if(i>=r.ev.length){clearInterval(timer);finish(r);return}
+    var e=r.ev[i++];line(e);upd(e.s1,e.s2);
+  },420);
+}
+function monte(){
+  var a=C[SA],b=C[SB],n=2000,w=0,d=0;
+  for(var i=0;i<n;i++){var r=simulate(a,b);if(r.s1>r.s2)w++;d+=r.s1-r.s2}
+  var p=w/n,f=1/(1+Math.exp(-(mean6(a)-mean6(b))/1.5)),box=$("mc");
+  box.style.display="block";
+  box.innerHTML='<h3>Over '+n.toLocaleString()+' simulated matches</h3><div class="sp"><i style="width:'+p*100+'%;background:'+(a[1]?"var(--ki)":"var(--ck)")+'"></i><i style="width:'+(100-p*100)+'%;background:'+(b[1]?"var(--ki)":"var(--ck)")+'"></i></div><div class="pl"><span>'+a[0]+' '+(p*100).toFixed(1)+'%</span><span>'+b[0]+' '+((1-p)*100).toFixed(1)+'%</span></div><p class="note">Average margin: '+(d/n>=0?a[0]:b[0])+' by '+Math.abs(d/n).toFixed(1)+' points. The simple rating-gap formula from the fights section gives '+a[0]+' '+(f*100).toFixed(0)+'%, so the full simulation '+(Math.abs(p-f)<.08?"roughly agrees with it.":"disagrees noticeably, because it also uses the individual skills, not just the average.")+'</p>';
+}
+function simInit(){
+  [$("fa"),$("fb")].forEach(function(sel){
+    [0,1].forEach(function(sh){
+      var g=document.createElement("optgroup");g.label=sh?"Kickin’ It":"Cobra Kai";
+      C.forEach(function(c,i){if(c[1]===sh){var o=document.createElement("option");o.value=i;o.textContent=c[0];g.appendChild(o)}});
+      sel.appendChild(g);
+    });
+  });
+  var pre=$("fpre");pre.innerHTML='<option value="">Replay a documented fight…</option>';
+  F.forEach(function(f,i){var o=document.createElement("option");o.value=i;o.textContent=f.a+" vs "+f.b+" ("+f.ep.replace("Cobra Kai ","").replace("Kickin’ It ","KI ")+")";pre.appendChild(o)});
+  $("fa").onchange=function(){SA=+this.value;simLabels()};$("fb").onchange=function(){SB=+this.value;simLabels()};
+  pre.onchange=function(){if(this.value==="")return;var f=F[+this.value];SA=idx(f.a);SB=idx(f.b);simLabels()};
+  $("bgo").onclick=function(){play(false)};$("bsk").onclick=function(){play(true)};$("bmc").onclick=monte;
+  simLabels();
+}
+build();calc();avg();lab();fights();simInit();
 </script>
 </body>
 </html>
